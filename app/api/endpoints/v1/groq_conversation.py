@@ -25,7 +25,7 @@ conversational_memory_length = 10
 memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_key="chat_history", return_messages=True) 
 
 @router.post("/conversation")
-async def chat_with_model(conversation_id: str,
+async def chat_with_model(
                           chat_request: ChatRequest,
                           api_key: str = Depends(verify_api_key),
                           x_api_key: str = Header(None, alias='x-api-key')

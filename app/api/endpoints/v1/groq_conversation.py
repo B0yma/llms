@@ -106,5 +106,6 @@ async def chat_with_model(conversation_id: str,
                 {'input':message['human']},
                 {'output':message['AI']}
                 )
+        return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -4,8 +4,13 @@ Start fastapi server:
 drag and drop from '.venv/Scripts/activate.ps1' to terminal
 ```
 
+dev
 ```bash
 uvicorn app.main:app --reload
+```
+prod
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 80
 ```
 
 ## API Documentation

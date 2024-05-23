@@ -28,7 +28,7 @@ async def chat_with_model(
                           ):
     try:
         model = chat_request.llmModel
-        if model is None | model == '':
+        if model is None or model == '':
             model = 'llama3-8b-8192'
         
         print(model)

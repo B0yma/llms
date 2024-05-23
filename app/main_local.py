@@ -1,10 +1,8 @@
-# uncomment below to run
+import uvicorn
+from main import app
 
-# import uvicorn
-# from main import app
+print("Starting...")
 
-# print("Starting...")
-
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="localhost", port=8000)
+if __name__ == "__main__":
+    uvicorn.run(app, host="localhost", port=8000)
     

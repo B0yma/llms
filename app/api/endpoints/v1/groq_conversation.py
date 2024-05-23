@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Header, Response
-from app.schemas import ChatRequest
-from app.config import settings
+from schemas import ChatRequest
+from config import settings
 from langchain_core.prompts import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
@@ -12,7 +12,7 @@ from langchain_groq import ChatGroq
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from urllib.request import unquote
 
-from app.permissions import verify_api_key
+from permissions import verify_api_key
 
 router = APIRouter()
 
@@ -28,7 +28,7 @@ async def chat_with_model(
                           ):
     try:
         model = chat_request.llmModel
-        if model is None | model == '':
+        if model is None or model == '':
             model = 'llama3-8b-8192'
         
         print(model)

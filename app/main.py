@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers.api_v1 import api_router
+from routers.api_v1 import api_router
 
 app = FastAPI(title="llms api", version="0.0.1")
 

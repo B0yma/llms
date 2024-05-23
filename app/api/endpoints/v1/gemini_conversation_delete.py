@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Depends, Header, Response
-from utils.message_handler import MessageHandler
-from utils.llm_manager import GeminiLLMManager
+from app.utils.message_handler import MessageHandler
+from app.utils.llm_manager import GeminiLLMManager
 
-from permissions import verify_api_key
-from config import settings
+from app.permissions import verify_api_key
+from app.config import settings
 
 router = APIRouter()
 

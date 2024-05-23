@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from api.endpoints.v1 import gemini_conversation, gemini_conversation_delete, groq_conversation
+from app.api.endpoints.v1 import gemini_conversation, gemini_conversation_delete, groq_conversation
 
 api_router = APIRouter()
 

@@ -1,5 +1,5 @@
 from fastapi import Request, HTTPException
-from config import settings
+from .config import settings
 
 
 async def verify_api_key(request: Request):

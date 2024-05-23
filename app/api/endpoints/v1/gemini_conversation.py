@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends, Header
 from fastapi.responses import StreamingResponse
-from schemas import ChatRequest
-from utils.message_handler import MessageHandler
-from utils.llm_manager import GeminiLLMManager
+from app.schemas import ChatRequest
+from app.utils.message_handler import MessageHandler
+from app.utils.llm_manager import GeminiLLMManager
 
-from permissions import verify_api_key
+from app.permissions import verify_api_key
 
 router = APIRouter()
 

@@ -6,7 +6,7 @@ from langchain.memory import ConversationBufferWindowMemory
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.callbacks import AsyncIteratorCallbackHandler
 
-from config import settings
+from ..config import settings
 
 logger = logging.getLogger(__name__)
 

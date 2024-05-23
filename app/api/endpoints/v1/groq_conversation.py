@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, Header, Response
+from fastapi.responses import JSONResponse
 from app.schemas import ChatRequest
 from app.config import settings
 from langchain_core.prompts import (
@@ -76,6 +77,6 @@ async def chat_with_model(
                 {'input':message['human']},
                 {'output':message['AI']}
                 )
-        return Response(status_code=200, content=response)
+        return JSONResponse(status_code=200, content={"message": "" + response})
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

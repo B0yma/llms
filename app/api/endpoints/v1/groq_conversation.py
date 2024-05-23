@@ -37,7 +37,8 @@ async def chat_with_model(
         groq_chat = ChatGroq(
                     groq_api_key=settings.GROQ_API_KEY, 
                     model_name= model
-            ).with_structured_output(method='json_mode').with_retry(stop_after_attempt=5)  
+            )
+        # .with_structured_output(method='json_mode').with_retry(stop_after_attempt=5)  
         
         user_question = unquote(chat_request.userPromptUrlEncoded)
         

@@ -11,7 +11,6 @@ from langchain_core.messages import SystemMessage
 from langchain_groq import ChatGroq
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from urllib.request import unquote
-import urllib.parse
 
 from app.permissions import verify_api_key
 
@@ -77,6 +76,6 @@ async def chat_with_model(
                 {'input':message['human']},
                 {'output':message['AI']}
                 )
-        return Response(status_code=200, content=urllib.parse.quote(response))
+        return Response(status_code=200, content=response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

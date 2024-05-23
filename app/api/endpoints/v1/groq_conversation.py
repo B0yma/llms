@@ -10,6 +10,7 @@ from langchain.chains import LLMChain
 from langchain_core.messages import SystemMessage
 from langchain_groq import ChatGroq
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+from urllib.request import unquote
 
 from app.permissions import verify_api_key
 
@@ -19,7 +20,7 @@ router = APIRouter()
 groq_chat = ChatGroq(
             groq_api_key=settings.GROQ_API_KEY, 
             model_name='llama3-8b-8192'
-    )   
+    ).with_structured_output(method='json_mode')   
 
 conversational_memory_length = 10
 memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_key="chat_history", return_messages=True) 
@@ -32,47 +33,9 @@ async def chat_with_model(
                           ):
     try:
         
-        user_question = '''
-        tell me a another joke about harry potter
-        '''
+        user_question = unquote(chat_request.userPromptUrlEncoded)
         
-        system_prompt = '''
-        You are a quiz coding API specializing in generating various questions that responds in JSON.
-        Your job is to generate questions and answer and output the structured data in JSON.
-        The JSON schema should include:
-        {
-            "$schema": "http://json-schema.org/draft-04/schema#",
-            "type": "object",
-            "properties": {
-                "topic": {
-                    "type": "string"
-                },
-                "questions": {
-                    "type": "array",
-                    "items": [{
-                            "type": "object",
-                            "properties": {
-                                "question": {
-                                    "type": "string"
-                                },
-                                "correct_answer": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "question",
-                                "correct_answer"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "required": [
-                "topic",
-                "questions"
-            ]
-        }
-        '''
+        system_prompt = unquote(chat_request.systemPromptUrlEncoded)
         
         # Construct a chat prompt template using various components
         prompt = ChatPromptTemplate.from_messages(

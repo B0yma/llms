@@ -1,5 +1,5 @@
 import uvicorn
-from main import app
+from app.main import app
 
 print("Starting...")
 

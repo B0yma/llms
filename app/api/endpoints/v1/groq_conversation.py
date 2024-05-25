@@ -24,18 +24,21 @@ memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_k
 async def chat_with_model(
                           chat_request: ChatRequest,
                           api_key: str = Depends(verify_api_key),
-                          x_api_key: str = Header(None, alias='x-api-key')
+                          x_api_key: str = Header(None, alias='x-api-key'),
+                          x_groq_api_key: str = Header(None, alias='x-groq-api-key'),
                           ):
     try:
         model = chat_request.llmModel
         if model is None or model == '':
             model = 'llama3-8b-8192'
         
-        print(model)
+        groq_api_key = x_groq_api_key
+        if groq_api_key is None or groq_api_key == '':
+                groq_api_key = settings.GROQ_API_KEY
         
         # Initialize Groq Langchain chat object and conversation
         groq_chat = ChatGroq(
-                    groq_api_key=settings.GROQ_API_KEY, 
+                    groq_api_key = groq_api_key, 
                     model_name= model
             )
         # .with_structured_output(method='json_mode').with_retry(stop_after_attempt=5)  

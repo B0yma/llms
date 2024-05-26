@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = 'GEMINI_API_KEY'
     SYSTEM_INSTRUCTION: str = "SYSTEM_INSTRUCTION"
     GROQ_API_KEY: str = 'GROQ_API_KEY'
+    OPENAI_API_KEY: str = 'OPENAI_API_KEY'
 
     class Config:
         env_file = ".env"
